@@ -1,3 +1,25 @@
+function buttons() {
+  const navBtn = document.getElementById("navBtn");
+  const navDialog = document.getElementById("navDialog");
+  const navCloseBtn = document.getElementById("navCloseBtn");
+  const prevBtn = document.getElementById("navPrevBtn");
+  const nextBtn = document.getElementById("navNextBtn");
+  navBtn.addEventListener("click", () => {
+    navDialog.classList.toggle("nav__dialog-active");
+  });
+  navCloseBtn.addEventListener("click", () => {
+    navDialog.classList.remove("nav__dialog-active");
+  });
+  prevBtn.addEventListener("click", () => {
+    console.log("prev");
+  });
+  nextBtn.addEventListener("click", () => {
+    console.log("next");
+  });
+}
+
+buttons();
+
 function mobile() {
   const main = document.querySelector("main");
   main.innerHTML = `
@@ -75,10 +97,54 @@ function mobile() {
     `;
 }
 
+function desktop() {
+  const main = document.querySelector("main");
+  main.innerHTML = `
+        <img
+        class="image image--about-dark"
+        src="./images/image-about-dark.jpg"
+        alt="About dark"
+      />
+      <article class="article">
+        <h2 class="article__subtitle">About our furniture</h2>
+        <p class="article__text">
+          Our multifunctional collection blends design and function to suit your
+          individual taste. Make each room unique, or pick a cohesive theme that
+          best expresses your interests and what inspires you. Find the
+          furniture pieces you need, from traditional to contemporary styles or
+          anything in between. Product specialists are available to help you
+          create your dream space.
+        </p>
+      </article>
+      <img
+        class="image image--about-light"
+        src="./images/image-about-light.jpg"
+        alt="About light"
+      />
+  `;
+}
+
 function desktopSlideOne() {
   const main = document.querySelector("main");
   main.innerHTML = `
-    <article class="article">
+      <article class="article">
+        <h1 class="article__title">Discover innovative ways to decorate</h1>
+        <p class="article__text">
+          We provide unmatched quality, comfort, and style for property owners
+          across the country. Our experts combine form and function in bringing
+          your vision to life. Create a room in your own style with our
+          collection and make your property a reflection of you and what you
+          love.
+        </p>
+        <a class="article__link" href="#">Shop now</a>
+      </article>
+    `;
+}
+
+function desktopSlideTwo() {
+  const main = document.querySelector("main");
+  main.innerHTML = `
+      <article class="article">
         <h3 class="article__subtitle">We are available all across the globe</h3>
         <p class="article__text">
           With stores all over the world, it's easy for you to find furniture
@@ -88,7 +154,13 @@ function desktopSlideOne() {
         </p>
         <a class="article__link" href="#">Shop now</a>
       </article>
-      <article class="article">
+  `;
+}
+
+function desktopSlideThree() {
+  const main = document.querySelector("main");
+  main.innerHTML = `
+        <article class="article">
         <h4 class="article__subtitle">Manufactured with the best materials</h4>
         <p class="article__text">
           Our modern furniture store provides a high level of quality. Our
@@ -99,5 +171,5 @@ function desktopSlideOne() {
         </p>
         <a class="article__link" href="#">Shop now</a>
       </article>
-    `;
+  `;
 }

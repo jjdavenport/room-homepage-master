@@ -1,1 +1,15 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav__dialog-active {
+  display: block;
+}/*# sourceMappingURL=style.css.map */

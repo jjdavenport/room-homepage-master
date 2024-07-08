@@ -1,0 +1,17 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @include reset();
+}
+
+* {
+  @include reset();
+}
+
+.nav__dialog-active {
+  display: block;
+}
