@@ -10,8 +10,42 @@ body {
 
 * {
   @include reset();
+  font-size: 0.75rem;
 }
 
-.nav__dialog-active {
+.nav {
+  position: relative;
+  background: url(./images/mobile-image-hero-1.jpg);
+}
+
+.nav__dialog {
+  border: none;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.nav__dialog--active {
   display: block;
+}
+
+@media screen and (width >= 50rem) {
+  body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+  }
+  .section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .section-desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .image {
+    width: 100%;
+    object-fit: cover;
+  }
 }
