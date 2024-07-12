@@ -8,16 +8,17 @@ function buttons() {
   const mobile = window.innerWidth <= 720;
   const nav = document.querySelector(".nav");
   const updateSlides = () => {
+    const { title, text, link, backgroundImageDesktop, backgroundImageMobile } =
+      slides[index];
     if (mobile) {
-      nav.style.backgroundImage = `url(${mobileImages[index]})`;
+      nav.style.backgroundImage = `url(${backgroundImageMobile})`;
     } else {
-      const main = document.querySelector(".main");
-      const { title, text, link, backgroundImage } = slides[index];
-      nav.style.backgroundImage = `url(${backgroundImage})`;
-      main.querySelector(".article__title").innerText = title;
-      main.querySelector(".article__text").innerText = text;
-      main.querySelector(".article__link").innerText = link;
+      nav.style.backgroundImage = `url(${backgroundImageDesktop})`;
     }
+    const main = document.querySelector(".main");
+    main.querySelector(".article__title").innerText = title;
+    main.querySelector(".article__text").innerText = text;
+    main.querySelector(".article__link").innerText = link;
   };
   if (navBtn && navCloseBtn) {
     navBtn.addEventListener("click", () => {
@@ -29,42 +30,37 @@ function buttons() {
   }
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener("click", () => {
-      index =
-        (index - 1 + (mobile ? mobileImages.length : slides.length)) %
-        (mobile ? mobileImages.length : slides.length);
+      index = (index - 1 + slides.length) % slides.length;
       updateSlides();
     });
     nextBtn.addEventListener("click", () => {
-      index = (index + 1) % (mobile ? mobileImages.length : slides.length);
+      index = (index + 1) % slides.length;
       updateSlides();
     });
   }
 }
-
-const mobileImages = [
-  "./SCSS/images/mobile-image-hero-1.jpg",
-  "./SCSS/images/mobile-image-hero-2.jpg",
-  "./SCSS/images/mobile-image-hero-3.jpg",
-];
 
 const slides = [
   {
     title: "Discover innovative ways to decorate",
     text: "We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.",
     link: "Shop now",
-    backgroundImage: "./SCSS/images/desktop-image-hero-1.jpg",
+    backgroundImageDesktop: "./SCSS/images/desktop-image-hero-1.jpg",
+    backgroundImageMobile: "./SCSS/images/mobile-image-hero-1.jpg",
   },
   {
     title: "We are available all across the globe",
     text: "With stores all over the world, it's easy for you to find furniture for your home or place of business. Locally, we’re in most major cities throughout the country. Find the branch nearest you using our store locator. Any questions? Don't hesitate to contact us today.",
     link: "Shop now",
-    backgroundImage: "./SCSS/images/desktop-image-hero-2.jpg",
+    backgroundImageDesktop: "./SCSS/images/desktop-image-hero-2.jpg",
+    backgroundImageMobile: "./SCSS/images/mobile-image-hero-2.jpg",
   },
   {
     title: "Manufactured with the best materials",
     text: "Our modern furniture store provides a high level of quality. Our company has invested in advanced technology to ensure that every product is made as perfect and as consistent as possible. With three decades of experience in this industry, we understand what customers want for their home and office.",
     link: "Shop now",
-    backgroundImage: "./SCSS/images/desktop-image-hero-3.jpg",
+    backgroundImageDesktop: "./SCSS/images/desktop-image-hero-3.jpg",
+    backgroundImageMobile: "./SCSS/images/mobile-image-hero-3.jpg",
   },
 ];
 
@@ -83,6 +79,7 @@ window.addEventListener("DOMContentLoaded", desktopMobile);
 
 function mobile() {
   const main = document.querySelector("main");
+  const { title, text, link } = slides[0];
   main.innerHTML = `
     <nav class="nav">
         <div class="nav__div">
@@ -128,15 +125,11 @@ function mobile() {
         </div>
       </nav>
       <article class="article">
-        <h1 class="article__title">Discover innovative ways to decorate</h1>
+        <h1 class="article__title">${title}</h1>
         <p class="article__text">
-          We provide unmatched quality, comfort, and style for property owners
-          across the country. Our experts combine form and function in bringing
-          your vision to life. Create a room in your own style with our
-          collection and make your property a reflection of you and what you
-          love.
+          ${text}
         </p>
-        <a class="article__link" href="#">Shop now</a>
+        <a class="article__link" href="#">${link}</a>
       </article>
       <img
         class="image image--about-dark"
