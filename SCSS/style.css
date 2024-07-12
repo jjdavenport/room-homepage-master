@@ -11,21 +11,34 @@ body {
   font-size: 0.75rem;
 }
 
-.nav {
-  position: relative;
-  background: url(./images/mobile-image-hero-1.jpg);
+ul {
+  list-style: none;
 }
 
-.nav__dialog {
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background: url(./images/mobile-image-hero-1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25rem;
+}
+.nav .nav__dialog {
+  gap: 4rem;
   border: none;
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
 }
+.nav .nav__dialog .nav__list {
+  display: flex;
+}
 
 .nav__dialog--active {
-  display: block;
+  display: flex;
 }
 
 @media screen and (width >= 50rem) {
@@ -34,16 +47,36 @@ body {
     grid-template-rows: 1fr auto;
     height: 100vh;
   }
-  .section {
+  .main {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+  .content {
     display: grid;
     grid-template-columns: 2fr 1fr;
   }
-  .section-desktop {
+  .about {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+  .nav {
+    flex-direction: row;
+    background: url(./images/desktop-image-hero-1.jpg);
+    background-repeat: no-repeat;
+  }
+  .nav .nav__logo {
+    height: 12.5rem;
+  }
+  .nav .nav__list {
+    display: flex;
+    gap: 1rem;
   }
   .image {
     width: 100%;
     object-fit: cover;
+  }
+  .content__article {
+    display: flex;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=style.css.map */
