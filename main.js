@@ -7,13 +7,15 @@ function buttons() {
   const nextBtn = document.getElementById("navNextBtn");
   const mobile = window.innerWidth <= 720;
   const nav = document.querySelector(".nav");
+  const article = document.querySelector(".article");
+  const navImg = document.querySelector(".nav__background-image");
   const updateSlides = () => {
     const { title, text, link, backgroundImageDesktop, backgroundImageMobile } =
       slides[index];
     if (mobile) {
-      nav.style.backgroundImage = `url(${backgroundImageMobile})`;
+      navImg.src = backgroundImageMobile;
     } else {
-      nav.style.backgroundImage = `url(${backgroundImageDesktop})`;
+      navImg.src = backgroundImageDesktop;
     }
     const main = document.querySelector(".main");
     main.querySelector(".article__title").innerText = title;
@@ -31,10 +33,14 @@ function buttons() {
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener("click", () => {
       index = (index - 1 + slides.length) % slides.length;
+      article.classList.add("slide-prev");
+      article.classList.remove("slide-next");
       updateSlides();
     });
     nextBtn.addEventListener("click", () => {
       index = (index + 1) % slides.length;
+      article.classList.add("slide-next");
+      article.classList.remove("slide-prev");
       updateSlides();
     });
   }
@@ -82,76 +88,81 @@ function mobile() {
   const { title, text, link } = slides[0];
   main.innerHTML = `
     <nav class="nav">
-        <div class="nav__div">
-          <button class="nav__toggle-button" id="navBtn">
-            <img
-              class="nav__toggle-icon"
-              src="./images/icon-hamburger.svg"
-              alt="Open menu"
-            />
-          </button>
-          <img class="nav__logo" src="./images/logo.svg" alt="Room Logo" />
-        </div>
-        <dialog class="nav__dialog" id="navDialog">
-          <button class="nav__close-button" id="navCloseBtn">
-            <img
-              class="nav__close-icon"
-              src="./images/icon-close.svg"
-              alt="Close menu"
-            />
-          </button>
-          <ul class="nav__list">
-            <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
-          </ul>
-        </dialog>
-        <div class="nav__buttons">
-          <button class="nav__prev-button" id="navPrevBtn">
-            <img
-              class="nav__prev-icon"
-              src="./images/icon-angle-left.svg"
-              alt="Previous"
-            />
-          </button>
-          <button class="nav__next-button" id="navNextBtn">
-            <img
-              class="nav__next-icon"
-              src="./images/icon-angle-right.svg"
-              alt="Next"
-            />
-          </button>
-        </div>
-      </nav>
-      <article class="article">
-        <h1 class="article__title">${title}</h1>
-        <p class="article__text">
-          ${text}
-        </p>
-        <a class="article__link" href="#">${link}</a>
-      </article>
       <img
-        class="image image--about-dark"
-        src="./images/image-about-dark.jpg"
-        alt="About dark"
+        class="nav__background-image"
+        src="./SCSS/images/mobile-image-hero-1.jpg"
+        alt="Navigation background image"
       />
-      <article class="article">
-        <h2 class="article__subtitle">About our furniture</h2>
-        <p class="article__text">
-          Our multifunctional collection blends design and function to suit your
-          individual taste. Make each room unique, or pick a cohesive theme that
-          best expresses your interests and what inspires you. Find the
-          furniture pieces you need, from traditional to contemporary styles or
-          anything in between. Product specialists are available to help you
-          create your dream space.
-        </p>
-      </article>
-      <img
-        class="image image--about-light"
-        src="./images/image-about-light.jpg"
-        alt="About light"
-      />
+      <div class="nav__div">
+        <button class="nav__toggle-button" id="navBtn">
+          <img
+            class="nav__toggle-icon"
+            src="./images/icon-hamburger.svg"
+            alt="Open menu"
+          />
+        </button>
+        <img class="nav__logo" src="./images/logo.svg" alt="Room Logo" />
+      </div>
+      <dialog class="nav__dialog" id="navDialog">
+        <button class="nav__close-button" id="navCloseBtn">
+          <img
+            class="nav__close-icon"
+            src="./images/icon-close.svg"
+            alt="Close menu"
+          />
+        </button>
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">About</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+        </ul>
+      </dialog>
+      <div class="nav__buttons">
+        <button class="nav__prev-button" id="navPrevBtn">
+          <img
+            class="nav__prev-icon"
+            src="./images/icon-angle-left.svg"
+            alt="Previous"
+          />
+        </button>
+        <button class="nav__next-button" id="navNextBtn">
+          <img
+            class="nav__next-icon"
+            src="./images/icon-angle-right.svg"
+            alt="Next"
+          />
+        </button>
+      </div>
+    </nav>
+    <article class="article">
+      <h1 class="article__title">${title}</h1>
+      <p class="article__text">
+        ${text}
+      </p>
+      <a class="article__link" href="#">${link}</a>
+    </article>
+    <img
+      class="image image--about-dark"
+      src="./images/image-about-dark.jpg"
+      alt="About dark"
+    />
+    <article class="article">
+      <h2 class="article__subtitle">About our furniture</h2>
+      <p class="article__text">
+        Our multifunctional collection blends design and function to suit your
+        individual taste. Make each room unique, or pick a cohesive theme that
+        best expresses your interests and what inspires you. Find the
+        furniture pieces you need, from traditional to contemporary styles or
+        anything in between. Product specialists are available to help you
+        create your dream space.
+      </p>
+    </article>
+    <img
+      class="image image--about-light"
+      src="./images/image-about-light.jpg"
+      alt="About light"
+    />
   `;
 }
 
@@ -161,13 +172,20 @@ function desktop() {
   main.innerHTML = `
     <section class="content">
       <nav class="content__nav nav">
-        <img class="nav__logo" src="./images/logo.svg" alt="Logo">
-        <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
-        </ul>
+        <img
+          class="nav__background-image"
+          src="./SCSS/images/desktop-image-hero-1.jpg"
+          alt="Navigation background image"
+        />
+        <div class="nav__div">
+          <img class="nav__logo" src="./images/logo.svg" alt="Logo">
+          <ul class="nav__list">
+            <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">About</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+          </ul>
+        </div>
       </nav>
       <article class="content__article article">
         <h1 class="article__title">${title}</h1>
@@ -175,20 +193,22 @@ function desktop() {
           ${text}
         </p>
         <a class="article__link" href="#">${link}</a>
-        <button class="article__button article__button--prev" id="navPrevBtn">
-          <img
-            class="article__icon article__icon--prev"
-            src="./images/icon-angle-left.svg"
-            alt="Previous"
-          />
-        </button>
-        <button class="article__button article__button--next" id="navNextBtn">
-          <img
-            class="article__icon article__icon--next"
-            src="./images/icon-angle-right.svg"
-            alt="Next"
-          />
-        </button>
+        <div class="article__buttons">
+          <button class="article__button article__button--prev" id="navPrevBtn">
+            <img
+              class="article__icon article__icon--prev"
+              src="./images/icon-angle-left.svg"
+              alt="Previous"
+            />
+          </button>
+          <button class="article__button article__button--next" id="navNextBtn">
+            <img
+              class="article__icon article__icon--next"
+              src="./images/icon-angle-right.svg"
+              alt="Next"
+            />
+          </button>
+        </div>
       </article>
     </section>
     <section class="about">

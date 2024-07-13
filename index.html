@@ -29,6 +29,11 @@
   <body>
     <main class="main">
       <nav class="nav">
+        <img
+          class="nav__background-image"
+          src="./SCSS/images/mobile-image-hero-1.jpg"
+          alt="Navigation background image"
+        />
         <div class="nav__div">
           <button class="nav__toggle-button" id="navBtn">
             <img
@@ -51,7 +56,9 @@
             <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
             <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
             <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+            <li class="nav__item">
+              <a class="nav__link" href="#">Contact</a>
+            </li>
           </ul>
         </dialog>
         <div class="nav__buttons">
@@ -72,15 +79,9 @@
         </div>
       </nav>
       <article class="article">
-        <h1 class="article__title">Discover innovative ways to decorate</h1>
-        <p class="article__text">
-          We provide unmatched quality, comfort, and style for property owners
-          across the country. Our experts combine form and function in bringing
-          your vision to life. Create a room in your own style with our
-          collection and make your property a reflection of you and what you
-          love.
-        </p>
-        <a class="article__link" href="#">Shop now</a>
+        <h1 class="article__title">${title}</h1>
+        <p class="article__text">${text}</p>
+        <a class="article__link" href="#">${link}</a>
       </article>
       <img
         class="image image--about-dark"
