@@ -4,40 +4,49 @@ function buttons() {
   const nextBtn = document.getElementById("navNextBtn");
   const mobileWidth = window.innerWidth <= 720;
   const nav = document.querySelector("nav.nav");
-  const main = document.querySelector("main");
-  const updateSlides = () => {
+  const article = document.querySelector(".article");
+  const updateSlides = (direction) => {
     const { title, text, link, backgroundImageDesktop, backgroundImageMobile } =
       slides[index];
-    const slideImg = document.createElement("img");
-    slideImg.className = "nav__background-image";
-    slideImg.alt = "Navigation background image";
-    slideImg.src = mobileWidth ? backgroundImageMobile : backgroundImageDesktop;
-    const slideArticle = document.createElement("article");
-    slideArticle.className = "article";
-    slideArticle.innerHTML = `
+    const newImg = document.createElement("img");
+    newImg.className = "nav__background-image new-slide";
+    newImg.alt = "Navigation background image";
+    newImg.src = mobileWidth ? backgroundImageMobile : backgroundImageDesktop;
+    const newDiv = document.createElement("div");
+    newDiv.className = "article__div new-slide";
+    newDiv.innerHTML = `
       <h1 class="article__title">${title}</h1>
       <p class="article__text">${text}</p>
-      <a class="article__link" href="#">${link}</a>
+      <a href="#" class="article__link">${link}</a>
     `;
-    const existingNavImg = nav.querySelector(".nav__background-image");
-    if (existingNavImg) {
-      nav.removeChild(existingNavImg);
-    }
-    nav.insertBefore(slideImg, nav.firstChild);
-    const existingArticle = main.querySelector(".article");
-    if (existingArticle) {
-      main.removeChild(existingArticle);
-    }
-    main.insertBefore(slideArticle, main.querySelector(".image--about-dark"));
+    const currentImg = nav.querySelector(".nav__background-image");
+    const currentDiv = article.querySelector(".article__div");
+    const slideIn = direction === "next" ? "100%" : "-100%";
+    const slideOut = direction === "next" ? "-100%" : "100%";
+    newImg.style.transform = `translateX(${slideIn})`;
+    newDiv.style.transform = `translateX(${slideIn})`;
+    nav.appendChild(newImg);
+    article.appendChild(newDiv);
+    void article.offsetWidth;
+    currentImg.style.transform = `translateX(${slideOut})`;
+    currentDiv.style.transform = `translateX(${slideOut})`;
+    newImg.style.transform = "translateX(0)";
+    newDiv.style.transform = "translateX(0)";
+    setTimeout(() => {
+      nav.removeChild(currentImg);
+      article.removeChild(currentDiv);
+      newImg.classList.remove("new-slide");
+      newDiv.classList.remove("new-slide");
+    }, 500);
   };
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener("click", () => {
       index = (index - 1 + slides.length) % slides.length;
-      updateSlides();
+      updateSlides("prev");
     });
     nextBtn.addEventListener("click", () => {
       index = (index + 1) % slides.length;
-      updateSlides();
+      updateSlides("next");
     });
   }
 }
@@ -147,6 +156,7 @@ function mobile() {
       </div>
     </nav>
     <article class="article">
+      <div class="article__div">
       <h1 class="article__title">${title}</h1>
       <p class="article__text">
         ${text}
@@ -158,6 +168,7 @@ function mobile() {
       src="./images/image-about-dark.jpg"
       alt="About dark"
     />
+    </div>
     <article class="article">
       <h2 class="article__subtitle">About our furniture</h2>
       <p class="article__text">
