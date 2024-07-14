@@ -1,47 +1,57 @@
 function buttons() {
   let index = 0;
-  const navBtn = document.getElementById("navBtn");
-  const navDialog = document.getElementById("navDialog");
-  const navCloseBtn = document.getElementById("navCloseBtn");
   const prevBtn = document.getElementById("navPrevBtn");
   const nextBtn = document.getElementById("navNextBtn");
-  const mobile = window.innerWidth <= 720;
-  const nav = document.querySelector(".nav");
-  const article = document.querySelector(".article");
-  const navImg = document.querySelector(".nav__background-image");
+  const mobileWidth = window.innerWidth <= 720;
+  const nav = document.querySelector("nav.nav");
+  const main = document.querySelector("main");
   const updateSlides = () => {
     const { title, text, link, backgroundImageDesktop, backgroundImageMobile } =
       slides[index];
-    if (mobile) {
-      navImg.src = backgroundImageMobile;
-    } else {
-      navImg.src = backgroundImageDesktop;
+    const slideImg = document.createElement("img");
+    slideImg.className = "nav__background-image";
+    slideImg.alt = "Navigation background image";
+    slideImg.src = mobileWidth ? backgroundImageMobile : backgroundImageDesktop;
+    const slideArticle = document.createElement("article");
+    slideArticle.className = "article";
+    slideArticle.innerHTML = `
+      <h1 class="article__title">${title}</h1>
+      <p class="article__text">${text}</p>
+      <a class="article__link" href="#">${link}</a>
+    `;
+    const existingNavImg = nav.querySelector(".nav__background-image");
+    if (existingNavImg) {
+      nav.removeChild(existingNavImg);
     }
-    const main = document.querySelector(".main");
-    main.querySelector(".article__title").innerText = title;
-    main.querySelector(".article__text").innerText = text;
-    main.querySelector(".article__link").innerText = link;
+    nav.insertBefore(slideImg, nav.firstChild);
+    const existingArticle = main.querySelector(".article");
+    if (existingArticle) {
+      main.removeChild(existingArticle);
+    }
+    main.insertBefore(slideArticle, main.querySelector(".image--about-dark"));
   };
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + slides.length) % slides.length;
+      updateSlides();
+    });
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % slides.length;
+      updateSlides();
+    });
+  }
+}
+
+function mobileMenu() {
+  const navBtn = document.getElementById("navBtn");
+  const navDialog = document.getElementById("navDialog");
+  const navCloseBtn = document.getElementById("navCloseBtn");
   if (navBtn && navCloseBtn) {
     navBtn.addEventListener("click", () => {
       navDialog.classList.toggle("nav__dialog--active");
     });
     navCloseBtn.addEventListener("click", () => {
       navDialog.classList.remove("nav__dialog--active");
-    });
-  }
-  if (prevBtn && nextBtn) {
-    prevBtn.addEventListener("click", () => {
-      index = (index - 1 + slides.length) % slides.length;
-      article.classList.add("slide-prev");
-      article.classList.remove("slide-next");
-      updateSlides();
-    });
-    nextBtn.addEventListener("click", () => {
-      index = (index + 1) % slides.length;
-      article.classList.add("slide-next");
-      article.classList.remove("slide-prev");
-      updateSlides();
     });
   }
 }
@@ -78,6 +88,7 @@ function desktopMobile() {
     mobile();
   }
   buttons();
+  mobileMenu();
 }
 
 window.addEventListener("resize", desktopMobile);
