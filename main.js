@@ -12,6 +12,7 @@ function buttons() {
     newImg.className = "nav__background-image new-slide";
     newImg.alt = "Navigation background image";
     newImg.src = mobileWidth ? backgroundImageMobile : backgroundImageDesktop;
+    newImg.style.zIndex = "1";
     const newDiv = document.createElement("div");
     newDiv.className = "article__div new-slide";
     newDiv.innerHTML = `
@@ -19,6 +20,7 @@ function buttons() {
       <p class="article__text">${text}</p>
       <a href="#" class="article__link">${link}</a>
     `;
+    newDiv.style.zIndex = "0";
     const currentImg = nav.querySelector(".nav__background-image");
     const currentDiv = article.querySelector(".article__div");
     const slideIn = direction === "next" ? "100%" : "-100%";
@@ -44,7 +46,6 @@ function buttons() {
       index = (index - 1 + slides.length) % slides.length;
       updateSlides("prev");
     });
-
     nextBtn.addEventListener("click", () => {
       index = (index + 1) % slides.length;
       updateSlides("next");

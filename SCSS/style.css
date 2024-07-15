@@ -72,6 +72,7 @@ ul {
   cursor: pointer;
   border: none;
   background: hsl(0, 0%, 0%);
+  z-index: 1;
 }
 
 .nav__dialog {
@@ -86,6 +87,9 @@ ul {
   display: flex;
   opacity: 0;
   pointer-events: none;
+}
+.nav__dialog .nav__close-icon {
+  fill: hsl(0, 0%, 63%);
 }
 
 .nav__dialog--active {
@@ -126,6 +130,7 @@ ul {
 }
 
 .nav__background-image {
+  z-index: 1;
   transition: transform 0.5s ease-in-out;
   width: 100%;
   height: auto;
