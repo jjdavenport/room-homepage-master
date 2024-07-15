@@ -1,8 +1,8 @@
 function buttons() {
+  const mobileWidth = window.innerWidth <= 800;
   let index = 0;
   const prevBtn = document.getElementById("navPrevBtn");
   const nextBtn = document.getElementById("navNextBtn");
-  const mobileWidth = window.innerWidth <= 720;
   const nav = document.querySelector("nav.nav");
   const article = document.querySelector(".article");
   const updateSlides = (direction) => {
@@ -26,7 +26,7 @@ function buttons() {
     newImg.style.transform = `translateX(${slideIn})`;
     newDiv.style.transform = `translateX(${slideIn})`;
     nav.appendChild(newImg);
-    article.appendChild(newDiv);
+    article.insertBefore(newDiv, article.firstChild);
     void article.offsetWidth;
     currentImg.style.transform = `translateX(${slideOut})`;
     currentDiv.style.transform = `translateX(${slideOut})`;
@@ -44,6 +44,7 @@ function buttons() {
       index = (index - 1 + slides.length) % slides.length;
       updateSlides("prev");
     });
+
     nextBtn.addEventListener("click", () => {
       index = (index + 1) % slides.length;
       updateSlides("next");
@@ -91,7 +92,7 @@ const slides = [
 
 function desktopMobile() {
   const width = window.innerWidth;
-  if (width >= 720) {
+  if (width >= 800) {
     desktop();
   } else {
     mobile();
@@ -193,7 +194,7 @@ function desktop() {
   const { title, text, link } = slides[0];
   main.innerHTML = `
     <section class="content">
-      <nav class="content__nav nav">
+      <nav class="nav">
         <img
           class="nav__background-image"
           src="./SCSS/images/desktop-image-hero-1.jpg"
@@ -209,21 +210,23 @@ function desktop() {
           </ul>
         </div>
       </nav>
-      <article class="content__article article">
+      <article class="article">
+        <div class="article__div">
         <h1 class="article__title">${title}</h1>
         <p class="article__text">
           ${text}
         </p>
         <a class="article__link" href="#">${link}</a>
+        </div>
         <div class="article__buttons">
-          <button class="article__button article__button--prev" id="navPrevBtn">
+          <button class="article__button-prev" id="navPrevBtn">
             <img
               class="article__icon article__icon--prev"
               src="./images/icon-angle-left.svg"
               alt="Previous"
             />
           </button>
-          <button class="article__button article__button--next" id="navNextBtn">
+          <button class="article__button-next" id="navNextBtn">
             <img
               class="article__icon article__icon--next"
               src="./images/icon-angle-right.svg"
