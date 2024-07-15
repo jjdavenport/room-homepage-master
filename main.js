@@ -18,7 +18,11 @@ function buttons() {
     newDiv.innerHTML = `
       <h1 class="article__title">${title}</h1>
       <p class="article__text">${text}</p>
-      <a href="#" class="article__link">${link}</a>
+      <a class="article__link" href="#">${link}
+  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+  </svg>
+</a>
     `;
     newDiv.style.zIndex = "0";
     const currentImg = nav.querySelector(".nav__background-image");
@@ -34,11 +38,13 @@ function buttons() {
     currentDiv.style.transform = `translateX(${slideOut})`;
     newImg.style.transform = "translateX(0)";
     newDiv.style.transform = "translateX(0)";
+    document.body.style.overflowX = "hidden";
     setTimeout(() => {
       nav.removeChild(currentImg);
       article.removeChild(currentDiv);
       newImg.classList.remove("new-slide");
       newDiv.classList.remove("new-slide");
+      document.body.style.overflowX = "";
     }, 500);
   };
   if (prevBtn && nextBtn) {
@@ -141,14 +147,14 @@ function mobile() {
         </ul>
       </dialog>
       <div class="nav__buttons">
-        <button class="nav__prev-button" id="navPrevBtn">
+        <button class="nav__button" id="navPrevBtn">
           <img
             class="nav__prev-icon"
             src="./images/icon-angle-left.svg"
             alt="Previous"
           />
         </button>
-        <button class="nav__next-button" id="navNextBtn">
+        <button class="nav__button" id="navNextBtn">
           <img
             class="nav__next-icon"
             src="./images/icon-angle-right.svg"
@@ -163,7 +169,11 @@ function mobile() {
       <p class="article__text">
         ${text}
       </p>
-      <a class="article__link" href="#">${link}</a>
+      <a class="article__link" href="#">${link}
+  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+  </svg>
+</a>
     </article>
     <img
       class="image image--about-dark"
@@ -171,9 +181,9 @@ function mobile() {
       alt="About dark"
     />
     </div>
-    <article class="article">
-      <h2 class="article__subtitle">About our furniture</h2>
-      <p class="article__text">
+    <article class="about__article">
+      <h2 class="about__subtitle">About our furniture</h2>
+      <p class="about__text">
         Our multifunctional collection blends design and function to suit your
         individual taste. Make each room unique, or pick a cohesive theme that
         best expresses your interests and what inspires you. Find the
@@ -217,7 +227,11 @@ function desktop() {
         <p class="article__text">
           ${text}
         </p>
-        <a class="article__link" href="#">${link}</a>
+        <a class="article__link" href="#">${link}
+  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+  </svg>
+</a>
         </div>
         <div class="article__buttons">
           <button class="article__button-prev" id="navPrevBtn">

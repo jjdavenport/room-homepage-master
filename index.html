@@ -15,16 +15,6 @@
     <title>Frontend Mentor | Room homepage</title>
     <script src="./main.js" defer></script>
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <style>
-      .attribution {
-        font-size: 0.6875rem;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-        text-decoration: none;
-      }
-    </style>
   </head>
   <body>
     <main class="main">
@@ -84,7 +74,11 @@
           <p class="article__text">
             ${text}
           </p>
-          <a class="article__link" href="#">${link}</a>
+          <a class="article__link" href="#">${link}
+            <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+              <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+            </svg>
+          </a>
         </article>
         <img
           class="image image--about-dark"
@@ -92,9 +86,9 @@
           alt="About dark"
         />
         </div>
-      <article class="article">
-        <h2 class="article__subtitle">About our furniture</h2>
-        <p class="article__text">
+      <article class="about__article">
+        <h2 class="about__subtitle">About our furniture</h2>
+        <p class="about__text">
           Our multifunctional collection blends design and function to suit your
           individual taste. Make each room unique, or pick a cohesive theme that
           best expresses your interests and what inspires you. Find the
