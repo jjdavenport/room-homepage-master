@@ -1,11 +1,23 @@
 function buttons() {
   const mobileWidth = window.innerWidth <= 800;
   let index = 0;
+  let isTransitioning = false;
   const prevBtn = document.getElementById("navPrevBtn");
   const nextBtn = document.getElementById("navNextBtn");
   const nav = document.querySelector("nav.nav");
   const article = document.querySelector(".article");
+  let transitionQueue = [];
   const updateSlides = (direction) => {
+    if (isTransitioning) {
+      transitionQueue.push(direction);
+      return;
+    }
+    isTransitioning = true;
+    if (direction === "next") {
+      index = (index + 1) % slides.length;
+    } else if (direction === "prev") {
+      index = (index - 1 + slides.length) % slides.length;
+    }
     const { title, text, link, backgroundImageDesktop, backgroundImageMobile } =
       slides[index];
     const newImg = document.createElement("img");
@@ -19,10 +31,10 @@ function buttons() {
       <h1 class="article__title">${title}</h1>
       <p class="article__text">${text}</p>
       <a class="article__link" href="#">${link}
-  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
-    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
-  </svg>
-</a>
+        <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+          <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+        </svg>
+      </a>
     `;
     newDiv.style.zIndex = "0";
     const currentImg = nav.querySelector(".nav__background-image");
@@ -40,20 +52,27 @@ function buttons() {
     newDiv.style.transform = "translateX(0)";
     document.body.style.overflowX = "hidden";
     setTimeout(() => {
-      nav.removeChild(currentImg);
-      article.removeChild(currentDiv);
+      if (currentImg && currentImg.parentNode === nav) {
+        nav.removeChild(currentImg);
+      }
+      if (currentDiv && currentDiv.parentNode === article) {
+        article.removeChild(currentDiv);
+      }
       newImg.classList.remove("new-slide");
       newDiv.classList.remove("new-slide");
       document.body.style.overflowX = "";
+      isTransitioning = false;
+      if (transitionQueue.length > 0) {
+        const nextDirection = transitionQueue.shift();
+        updateSlides(nextDirection);
+      }
     }, 500);
   };
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener("click", () => {
-      index = (index - 1 + slides.length) % slides.length;
       updateSlides("prev");
     });
     nextBtn.addEventListener("click", () => {
-      index = (index + 1) % slides.length;
       updateSlides("next");
     });
   }
@@ -234,14 +253,14 @@ function desktop() {
 </a>
         </div>
         <div class="article__buttons">
-          <button class="article__button-prev" id="navPrevBtn">
+          <button class="article__button" id="navPrevBtn">
             <img
               class="article__icon article__icon--prev"
               src="./images/icon-angle-left.svg"
               alt="Previous"
             />
           </button>
-          <button class="article__button-next" id="navNextBtn">
+          <button class="article__button" id="navNextBtn">
             <img
               class="article__icon article__icon--next"
               src="./images/icon-angle-right.svg"
