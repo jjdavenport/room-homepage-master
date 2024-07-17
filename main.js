@@ -184,22 +184,22 @@ function mobile() {
     </nav>
     <article class="article">
       <div class="article__div">
-      <h1 class="article__title">${title}</h1>
-      <p class="article__text">
-        ${text}
-      </p>
-      <a class="article__link" href="#">${link}
-  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
-    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
-  </svg>
-</a>
+        <h1 class="article__title">${title}</h1>
+        <p class="article__text">
+          ${text}
+        </p>
+        <a class="article__link" href="#">${link}
+          <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+            <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+          </svg>
+        </a>
+      </div>
     </article>
     <img
       class="image image--about-dark"
       src="./images/image-about-dark.jpg"
       alt="About dark"
     />
-    </div>
     <article class="about__article">
       <h2 class="about__subtitle">About our furniture</h2>
       <p class="about__text">
@@ -220,78 +220,87 @@ function mobile() {
 }
 
 function desktop() {
-  const main = document.querySelector("main");
+  const body = document.querySelector("body");
   const { title, text, link } = slides[0];
-  main.innerHTML = `
-    <section class="content">
-      <nav class="nav">
+  body.innerHTML = `
+    <main>
+      <section class="content">
+        <nav class="nav">
+          <img
+            class="nav__background-image"
+            src="./SCSS/images/desktop-image-hero-1.jpg"
+            alt="Navigation background image"
+          />
+          <div class="nav__div">
+            <img class="nav__logo" src="./images/logo.svg" alt="Logo">
+            <ul class="nav__list">
+              <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">About</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+        <article class="article">
+          <div class="article__div">
+            <h1 class="article__title">${title}</h1>
+            <p class="article__text">
+              ${text}
+            </p>
+            <a class="article__link" href="#">${link}
+              <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+                <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
+              </svg>
+            </a>
+          </div>
+          <div class="article__buttons">
+            <button class="article__button" id="navPrevBtn">
+              <img
+                class="article__icon article__icon--prev"
+                src="./images/icon-angle-left.svg"
+                alt="Previous"
+              />
+            </button>
+            <button class="article__button" id="navNextBtn">
+              <img
+                class="article__icon article__icon--next"
+                src="./images/icon-angle-right.svg"
+                alt="Next"
+              />
+            </button>
+          </div>
+        </article>
+      </section>
+      <section class="about">
         <img
-          class="nav__background-image"
-          src="./SCSS/images/desktop-image-hero-1.jpg"
-          alt="Navigation background image"
+          class="about__image about__image--dark"
+          src="./images/image-about-dark.jpg"
+          alt="About dark"
         />
-        <div class="nav__div">
-          <img class="nav__logo" src="./images/logo.svg" alt="Logo">
-          <ul class="nav__list">
-            <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Shop</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">About</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <article class="article">
-        <div class="article__div">
-        <h1 class="article__title">${title}</h1>
-        <p class="article__text">
-          ${text}
-        </p>
-        <a class="article__link" href="#">${link}
-  <svg class="article__icon" width="40" height="12" xmlns="http://www.w3.org/2000/svg">
-    <path class="article__icon-path" d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/>
-  </svg>
-</a>
-        </div>
-        <div class="article__buttons">
-          <button class="article__button" id="navPrevBtn">
-            <img
-              class="article__icon article__icon--prev"
-              src="./images/icon-angle-left.svg"
-              alt="Previous"
-            />
-          </button>
-          <button class="article__button" id="navNextBtn">
-            <img
-              class="article__icon article__icon--next"
-              src="./images/icon-angle-right.svg"
-              alt="Next"
-            />
-          </button>
-        </div>
-      </article>
-    </section>
-    <section class="about">
-      <img
-        class="about__image about__image--dark"
-        src="./images/image-about-dark.jpg"
-        alt="About dark"
-      />
-      <article class="about__article">
-        <h2 class="about__subtitle">About our furniture</h2>
-        <p class="about__text">
-          Our multifunctional collection blends design and function to suit your
-          individual taste. Make each room unique, or pick a cohesive theme that
-          best expresses your interests and what inspires you. Find the
-          furniture pieces you need, from traditional to contemporary styles or
-          anything in between. Product specialists are available to help you
-          create your dream space.
-        </p>
-      </article>
-      <img
-        class="about__image about__image--light"
-        src="./images/image-about-light.jpg"
-        alt="About light"
-      />
-    </section>
+        <article class="about__article">
+          <div class="about__div">
+            <h2 class="about__subtitle">About our furniture</h2>
+            <p class="about__text">
+              Our multifunctional collection blends design and function to suit your
+              individual taste. Make each room unique, or pick a cohesive theme that
+              best expresses your interests and what inspires you. Find the
+              furniture pieces you need, from traditional to contemporary styles or
+              anything in between. Product specialists are available to help you
+              create your dream space.
+            </p>
+          </div>
+        </article>
+        <footer class="attribution">
+          Challenge by
+          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+          Coded by <a href="https://github.com/jjdavenport">jjdavenport</a>.
+        </footer>
+        <img
+          class="about__image about__image--light"
+          src="./images/image-about-light.jpg"
+          alt="About light"
+        />
+      </section>
+    </main>
   `;
 }
