@@ -24,7 +24,7 @@ body {
   text-align: center;
   width: 100%;
   color: hsl(0, 0%, 0%);
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 .attribution a {
@@ -89,7 +89,7 @@ ul {
   right: 0;
   display: flex;
   justify-content: flex-end;
-  z-index: 999;
+  z-index: 4;
 }
 .nav .nav__buttons .nav__button {
   height: 5rem;
@@ -103,7 +103,7 @@ ul {
 }
 
 .nav__dialog {
-  position: absolute;
+  position: fixed;
   padding: 2rem;
   gap: clamp(0.125rem, -2.3945rem + 18.75vw, 2rem);
   border: none;

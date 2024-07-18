@@ -289,12 +289,12 @@ function desktop() {
               create your dream space.
             </p>
           </div>
-        </article>
-        <footer class="attribution">
+          <footer class="attribution">
           Challenge by
           <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
           Coded by <a href="https://github.com/jjdavenport">jjdavenport</a>.
         </footer>
+        </article>
         <img
           class="about__image about__image--light"
           src="./images/image-about-light.jpg"
