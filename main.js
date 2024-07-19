@@ -223,7 +223,7 @@ function desktop() {
   const body = document.querySelector("body");
   const { title, text, link } = slides[0];
   body.innerHTML = `
-    <main>
+    <main class="main">
       <section class="content">
         <nav class="nav">
           <img

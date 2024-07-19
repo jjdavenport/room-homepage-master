@@ -213,10 +213,11 @@ ul {
     position: static;
     display: grid;
     grid-template-rows: 1fr auto;
+    height: 100vh;
   }
   .main {
     display: grid;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: repeat(2, auto);
   }
   .nav {
     flex-direction: column;
@@ -228,7 +229,7 @@ ul {
   }
   .nav .nav__div {
     padding: 5rem 2rem 2rem 5rem;
-    gap: 6rem;
+    gap: clamp(1rem, -5.25rem + 12.5vw, 6rem);
     position: absolute;
   }
   .nav .nav__logo {
@@ -237,7 +238,7 @@ ul {
   .nav .nav__list {
     justify-content: flex-start;
     display: flex;
-    gap: 4rem;
+    gap: clamp(1rem, -2.75rem + 7.5vw, 4rem);
   }
   .nav .nav__list .nav__item {
     position: relative;
@@ -273,13 +274,13 @@ ul {
   }
   .content .article .article__div {
     gap: 2rem;
-    padding: 8rem;
+    padding: clamp(1rem, -7.75rem + 17.5vw, 8rem);
   }
   .content .article .article__div .article__title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 0.125rem + 3.75vw, 3.5rem);
   }
   .content .article .article__div .article__text {
-    font-size: 1.25rem;
+    font-size: clamp(0.75rem, 0.125rem + 1.25vw, 1.25rem);
     line-height: 1.5625rem;
   }
   .content .article .article__div .article__link {
@@ -306,8 +307,8 @@ ul {
     grid-template-columns: 1fr 2fr 1fr;
   }
   .about .about__image {
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   .about .about__article {
@@ -326,8 +327,12 @@ ul {
     padding: 0;
     position: static;
   }
+  .about .about__subtitle {
+    font-size: clamp(1.25rem, 0.625rem + 1.25vw, 1.75rem);
+  }
   .about .about__text {
-    font-size: 1rem;
+    line-height: 1.5625rem;
+    font-size: clamp(0.75rem, 0.125rem + 1.25vw, 1.25rem);
   }
   .image {
     width: 100%;

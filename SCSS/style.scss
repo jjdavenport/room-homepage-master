@@ -225,10 +225,11 @@ ul {
     position: static;
     display: grid;
     grid-template-rows: 1fr auto;
+    height: 100vh;
   }
   .main {
     display: grid;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: repeat(2, auto);
   }
   .nav {
     flex-direction: column;
@@ -239,7 +240,7 @@ ul {
     }
     .nav__div {
       padding: 5rem 2rem 2rem 5rem;
-      gap: 6rem;
+      gap: clamp(1rem, -5.25rem + 12.5vw, 6rem);
       position: absolute;
     }
     .nav__logo {
@@ -248,7 +249,7 @@ ul {
     .nav__list {
       justify-content: flex-start;
       display: flex;
-      gap: 4rem;
+      gap: clamp(1rem, -2.75rem + 7.5vw, 4rem);
       .nav__item {
         position: relative;
         .nav__link {
@@ -283,12 +284,12 @@ ul {
       padding: 0;
       .article__div {
         gap: 2rem;
-        padding: 8rem;
+        padding: clamp(1rem, -7.75rem + 17.5vw, 8rem);
         .article__title {
-          font-size: 3.5rem;
+          font-size: clamp(2rem, 0.125rem + 3.75vw, 3.5rem);
         }
         .article__text {
-          font-size: 1.25rem;
+          font-size: clamp(0.75rem, 0.125rem + 1.25vw, 1.25rem);
           line-height: 1.5625rem;
         }
         .article__link {
@@ -317,8 +318,8 @@ ul {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     .about__image {
-      height: 100%;
       width: 100%;
+      height: 100%;
       object-fit: cover;
     }
     .about__article {
@@ -337,8 +338,12 @@ ul {
         position: static;
       }
     }
+    .about__subtitle {
+      font-size: clamp(1.25rem, 0.625rem + 1.25vw, 1.75rem);
+    }
     .about__text {
-      font-size: 1rem;
+      line-height: 1.5625rem;
+      font-size: clamp(0.75rem, 0.125rem + 1.25vw, 1.25rem);
     }
   }
   .image {
